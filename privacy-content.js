@@ -1,4 +1,8 @@
-document.getElementById('shared-content').innerHTML = `
+(function () {
+  function inject() {
+    var el = document.getElementById("shared-content");
+    if (!el) return;
+    el.innerHTML = `
 <div class="container">
  <h1>プライバシーポリシー</h1>
  <p class="intro">株式会社3S（以下「当社」といいます。）は、当社の提供するサービス（以下「当社サービス」といいます。）における、お客様の個人情報の取り扱いについて、以下のとおり、プライバシーポリシー（以下「本プライバシーポリシー」といいます。）を定めます。</p>
@@ -76,3 +80,11 @@ document.getElementById('shared-content').innerHTML = `
 
 </div>
 `;
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inject);
+  } else {
+    inject();
+  }
+})();
